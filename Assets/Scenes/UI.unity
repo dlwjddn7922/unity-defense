@@ -132,6 +132,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 34639141}
+  - component: {fileID: 34639142}
   m_Layer: 5
   m_Name: Dice_BG
   m_TagString: Untagged
@@ -160,6 +161,35 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0}
+--- !u!114 &34639142
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 34639140}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e212c94af5f534a48a692d71bd43473b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dice: {fileID: 0}
+  blocks:
+  - {fileID: 6678329286124041117, guid: 2bf0fa0759bc8c0479fd21f98d281348, type: 3}
+  - {fileID: 135954567154753368, guid: 9d371a23cf7b2ba4491d9cbb52fef134, type: 3}
+  - {fileID: 1275174177093889498, guid: 7a3c4daba2c53174ca6fb7f789a6ac01, type: 3}
+  - {fileID: 7906185365837611917, guid: 102ebdd5748070e4c8f1d26048cec6bc, type: 3}
+  - {fileID: 4200085032524546580, guid: 0d0fa560834179645addff4eb463c702, type: 3}
+  - {fileID: 8752416238885922144, guid: 8ba396e328aabad49b97ed495f1d42ac, type: 3}
+  - {fileID: 2993569184215409889, guid: 9b1729c8981ad5e44bb4e13fb82a452c, type: 3}
+  - {fileID: 6812970492629431149, guid: 97f49931c47ab564fba60785aa783efc, type: 3}
+  - {fileID: 2483483700149164255, guid: 9b38806ada6dbdf4a9ed42a04fc0221e, type: 3}
+  - {fileID: 1203247330976664388, guid: 43eaf9d5159468c428b0015044bc0114, type: 3}
+  - {fileID: 248696263969838758, guid: 552d25b114013df4fb5de90f2162a2bc, type: 3}
+  - {fileID: 4312936325549732002, guid: 4ec0da57e42b21143a2ace8d3434aa72, type: 3}
+  - {fileID: 657823371602221994, guid: e8db36817167e494aa55170ab561e5e7, type: 3}
+  - {fileID: 4170379937689318940, guid: ddafe216b555ff84e9fbaedc25c55bdc, type: 3}
+  - {fileID: 6293311977062784574, guid: aadf272bbee6b30408507489114ffd89, type: 3}
 --- !u!1 &370834112
 GameObject:
   m_ObjectHideFlags: 0
@@ -1910,7 +1940,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1979473880}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1979473880
 MonoBehaviour:
   m_ObjectHideFlags: 0
