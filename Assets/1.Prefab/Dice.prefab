@@ -52,6 +52,13 @@ MonoBehaviour:
   diceBlock: {fileID: 0}
   fireTrans: {fileID: 3023946662495874267}
   diceBullet: {fileID: -8268527861640049499, guid: c675714f37fadf14b9beafbae325a813, type: 3}
+  MonsterList:
+  - {fileID: 390285301118156581, guid: fb32ae3035488404390e44e0226f8e09, type: 3}
+  getATarget: 0
+  TargetIndex: -1
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
 --- !u!212 &6866523169733592504
 SpriteRenderer:
   m_ObjectHideFlags: 0
