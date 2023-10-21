@@ -63,7 +63,7 @@ public class Dice : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Attack();
+        FindTarget(etarget);
     }
     Monster FindEnemy()
     {
@@ -83,7 +83,7 @@ public class Dice : MonoBehaviour
         }
         return m;
     }
-    void Attack()
+    public void Attack()
     {
         Monster enemy = FindEnemy();
         if (enemy == null)
@@ -99,11 +99,13 @@ public class Dice : MonoBehaviour
             fireTimer = 0f;
 
             DiceBullet b = Instantiate(diceBullet, fireTrans);
-            b.SetTarget(enemy.transform);           
+            b.SetTarget(enemy.transform);
+            Debug.Log(enemy.name);
             b.transform.SetParent(null);
+            b.transform.Translate(vec);
         }
     }
-    void FindTarget()
+    public void FindTarget(List<Monster> MonsterList)
     {
         for (int i = 0; i < MonsterList.Count; i++)
         {
@@ -117,6 +119,7 @@ public class Dice : MonoBehaviour
                 {
                     distance = dis;
                     etarget = MonsterList[i].transform;
+                    Debug.Log(etarget.name);
                 }
             }
         }
