@@ -26,6 +26,7 @@ public class SpawnController : MonoBehaviour
             Monster mon = Instantiate(monster);
             mon.MonRoad(wayPoints);
             mon.transform.SetParent(spawnPos);
+            mon.name = "monster";
 
             timer = 0;
             spawnCnt++;

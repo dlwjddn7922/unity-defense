@@ -5,7 +5,7 @@ using Unity.Burst.CompilerServices;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class Dice : MonoBehaviour
+public class Dice : Singleton<Dice>
 {
     [HideInInspector] public Vector3 startPos = Vector3.zero;
     [HideInInspector] public DiceBlock diceBlock;
@@ -18,7 +18,7 @@ public class Dice : MonoBehaviour
     public Transform etarget;
     Dice target;
     float fireTimer;
-    float fireDelayTimer = 1f;
+    float fireDelayTimer = 0.2f;
 
 
     public void OnMouseDown()
@@ -69,73 +69,36 @@ public class Dice : MonoBehaviour
         FindTarget();
         if(enemytarget != null)
         {
-            float disToTarget =Vector3.Distance(transform.position, enemytarget.position);
+            float disToTarget =Vector3.Distance(transform.position, enemytarget.transform.position);
             if(disToTarget <= attackRange)
             {
                 Attack();
+                //FindTarget();
             }
         }
     }
-/*    Monster FindEnemy()
-    {
-        Monster[] enemies = FindObjectsOfType<Monster>();
-
-        float minDis = float.MaxValue;
-        Monster m = null;
-        foreach (var enemy in enemies)
-        {
-            float distance = Vector3.Distance(transform.position, enemy.transform.position);
-
-            if (minDis >= distance)
-            {
-                minDis = distance;
-                m = enemy;
-            }
-        }
-        return m;
-    }*/
-/*    public void Attack()
-    {
-        Monster enemy = FindEnemy();
-        if (enemy == null)
-        {
-            return;
-        }
-
-        Vector3 vec = new Vector3(enemy.transform.position.x, enemy.transform.position.y);
-
-        fireTimer += Time.deltaTime;
-        if (fireTimer > fireDelayTimer)
-        {
-            fireTimer = 0f;
-
-            DiceBullet b = Instantiate(diceBullet, fireTrans);
-            b.SetTarget(enemy.transform);
-            Debug.Log(enemy.name);
-            b.transform.SetParent(null);                      
-        }
-    }*/
     public void FindTarget()
     {
         GameObject[] enemies = GameObject.FindGameObjectsWithTag("Monster");
         float closetDis = float.MaxValue;
-        GameObject closetEnemy = null;
+        Transform closetEnemy = null;
         foreach(var enemy in enemies)
         {
-            float dis = Vector3.Distance(transform.position, enemy.transform.position);
+            float dis = Vector2.Distance(transform.position, enemy.transform.position);
             if( dis <= closetDis)
             {
                 closetDis = dis;
-                closetEnemy = enemy;
+                closetEnemy = enemy.transform;
+            }
+            if (closetEnemy != null)
+            {
+                enemytarget = closetEnemy.transform;
+                //enemytarget = target;
+                //fireTrans.LookAt(closetEnemy.transform.position);
             }
         }
-        if(closetEnemy != null)
-        {
-            enemytarget = closetEnemy.transform;
-            //fireTrans.LookAt(closetEnemy.transform.position);
-            
-            Debug.Log(enemytarget.name);
-        }
+
+
     }
     public void Attack()
     {
@@ -143,18 +106,17 @@ public class Dice : MonoBehaviour
         if (fireTimer > fireDelayTimer)
         {
             fireTimer = 0;
-
-            Vector2 vec = fireTrans.position - enemytarget.transform.position;
+            Vector2 vec = fireTrans.transform.position - enemytarget.transform.position;
             float angle = Mathf.Atan2(vec.x, vec.y) * Mathf.Rad2Deg;
-            fireTrans.rotation = Quaternion.AngleAxis(angle + 30, Vector3.forward);
-            
+            fireTrans.rotation = Quaternion.AngleAxis(angle - 270, Vector3.forward);
 
             DiceBullet db = Instantiate(diceBullet, fireTrans);
             //db.transform.rotation = Quaternion.identity;
-            //db.SetTarget(enemytarget);
-            db.transform.localPosition = Vector3.zero;
-            db.transform.localRotation = Quaternion.identity;           
+            db.SetTarget(enemytarget);
+            //db.transform.localPosition = Vector3.zero;
+            //db.transform.localRotation = Quaternion.identity;           
         }
     }
+
 }
 
