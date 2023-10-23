@@ -49,6 +49,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startPos: {x: 0, y: 0, z: 0}
   diceBlock: {fileID: 0}
+  fireTrans: {fileID: 0}
+  diceBullet: {fileID: 0}
+  MonsterList: []
+  attackRange: 5
+  etarget: {fileID: 0}
 --- !u!212 &8358522243854631028
 SpriteRenderer:
   m_ObjectHideFlags: 0

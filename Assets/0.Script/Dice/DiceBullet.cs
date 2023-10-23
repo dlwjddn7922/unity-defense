@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class DiceBullet : MonoBehaviour
 {
-    float speed = 3f;
+    float speed = 10f;
     [SerializeField ]Transform target;
     Vector3 vec;
     Dice dice;
@@ -17,7 +17,6 @@ public class DiceBullet : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //dice.Attack()
         transform.Translate(Vector3.up * Time.deltaTime * speed);
     }
     public void SetTarget(Transform target)

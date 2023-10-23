@@ -32,6 +32,6 @@ public class Monster : MonoBehaviour
         transform.DOPath(wayPointsVec, 10f)
             .SetEase(Ease.Linear)
             .OnComplete(() => Destroy(gameObject));
-        sr.DOFade(1f, 1f);
+        //sr.DOFade(1f, 1f);
     }
 }

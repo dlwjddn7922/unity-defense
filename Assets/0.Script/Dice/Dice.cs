@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.Burst.CompilerServices;
@@ -12,7 +13,8 @@ public class Dice : MonoBehaviour
     [SerializeField] private DiceBullet diceBullet;
     [SerializeField] private List<GameObject> MonsterList = new List<GameObject>();
 
-    public LayerMask layerMask;
+    public float attackRange = 10f;
+    private Transform enemytarget;
     public Transform etarget;
     Dice target;
     float fireTimer;
@@ -64,9 +66,17 @@ public class Dice : MonoBehaviour
     void Update()
     {
         //Attack();
-        //FindTarget();
+        FindTarget();
+        if(enemytarget != null)
+        {
+            float disToTarget =Vector3.Distance(transform.position, enemytarget.position);
+            if(disToTarget <= attackRange)
+            {
+                Attack();
+            }
+        }
     }
-    Monster FindEnemy()
+/*    Monster FindEnemy()
     {
         Monster[] enemies = FindObjectsOfType<Monster>();
 
@@ -83,8 +93,8 @@ public class Dice : MonoBehaviour
             }
         }
         return m;
-    }
-    public void Attack()
+    }*/
+/*    public void Attack()
     {
         Monster enemy = FindEnemy();
         if (enemy == null)
@@ -102,40 +112,49 @@ public class Dice : MonoBehaviour
             DiceBullet b = Instantiate(diceBullet, fireTrans);
             b.SetTarget(enemy.transform);
             Debug.Log(enemy.name);
-            b.transform.SetParent(null);
-            
-            
-            
+            b.transform.SetParent(null);                      
         }
-    }
+    }*/
     public void FindTarget()
     {
-        for (int i = 0; i < MonsterList.Count; i++)
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Monster");
+        float closetDis = float.MaxValue;
+        GameObject closetEnemy = null;
+        foreach(var enemy in enemies)
         {
-            RaycastHit hit;
-            bool isHit = Physics.Raycast(transform.position, MonsterList[i].transform.position - transform.position, out hit, 20f, layerMask);
-            float distance = float.MaxValue;
-            if (isHit && hit.transform.CompareTag("Monster"))
+            float dis = Vector3.Distance(transform.position, enemy.transform.position);
+            if( dis <= closetDis)
             {
-                float dis = Vector2.Distance(transform.position, MonsterList[i].transform.position);
-                if (dis < distance)
-                {
-                    distance = dis;
-                    etarget = MonsterList[i].transform;
-                    Debug.Log(etarget.name);
-                }
+                closetDis = dis;
+                closetEnemy = enemy;
             }
         }
+        if(closetEnemy != null)
+        {
+            enemytarget = closetEnemy.transform;
+            //fireTrans.LookAt(closetEnemy.transform.position);
+            
+            Debug.Log(enemytarget.name);
+        }
     }
-/*    void Attack()
+    public void Attack()
     {
         fireTimer += Time.deltaTime;
         if (fireTimer > fireDelayTimer)
         {
             fireTimer = 0;
+
+            Vector2 vec = fireTrans.position - enemytarget.transform.position;
+            float angle = Mathf.Atan2(vec.x, vec.y) * Mathf.Rad2Deg;
+            fireTrans.rotation = Quaternion.AngleAxis(angle + 30, Vector3.forward);
+            
+
             DiceBullet db = Instantiate(diceBullet, fireTrans);
-            //db.transform.Translate(MonsterList[0].transform.position);
+            //db.transform.rotation = Quaternion.identity;
+            //db.SetTarget(enemytarget);
+            db.transform.localPosition = Vector3.zero;
+            db.transform.localRotation = Quaternion.identity;           
         }
-    }*/
+    }
 }
 
