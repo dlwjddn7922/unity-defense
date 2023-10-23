@@ -63,7 +63,8 @@ public class Dice : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        FindTarget(etarget);
+        //Attack();
+        //FindTarget();
     }
     Monster FindEnemy()
     {
@@ -102,10 +103,12 @@ public class Dice : MonoBehaviour
             b.SetTarget(enemy.transform);
             Debug.Log(enemy.name);
             b.transform.SetParent(null);
-            b.transform.Translate(vec);
+            
+            
+            
         }
     }
-    public void FindTarget(List<Monster> MonsterList)
+    public void FindTarget()
     {
         for (int i = 0; i < MonsterList.Count; i++)
         {

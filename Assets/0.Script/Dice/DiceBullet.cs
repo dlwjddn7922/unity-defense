@@ -18,7 +18,7 @@ public class DiceBullet : MonoBehaviour
     void Update()
     {
         //dice.Attack()
-        //transform.Translate(Vector3.up * Time.deltaTime * speed);
+        transform.Translate(Vector3.up * Time.deltaTime * speed);
     }
     public void SetTarget(Transform target)
     {
