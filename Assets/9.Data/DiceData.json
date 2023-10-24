@@ -1,0 +1,68 @@
+{
+    "DiceData": [
+        {
+            "name": "fire",
+            "power": 20,
+            "atkspeed": 0.8,
+            "target": "front",
+            "addpower": 20,
+            "classuppower": 3,
+            "classupspeed": 0.01,
+            "classupaddpower": 3,
+            "leveluppower": 10,
+            "levelupspeed": 0,
+            "levelupaddpower": 20
+        },
+        {
+            "name": "electronic",
+            "power": 30,
+            "atkspeed": 0.7,
+            "target": "front",
+            "addpower": 30,
+            "classuppower": 3,
+            "classupspeed": 0.02,
+            "classupaddpower": 3,
+            "leveluppower": 10,
+            "levelupspeed": 0,
+            "levelupaddpower": 20
+        },
+        {
+            "name": "wind",
+            "power": 20,
+            "atkspeed": 0.45,
+            "target": "front",
+            "addpower": 10,
+            "classuppower":3,
+            "classupspeed":0.009,
+            "classupaddpower":0,
+            "leveluppower":15,
+            "levelupspeed":0.045,
+            "levelupaddpower":0
+        },
+        {
+            "name": "poison",
+            "power":20,
+            "atkspeed":1.3,
+            "target": "random",
+            "addpower": 50,
+            "classuppower":2,
+            "classupspeed":0,
+            "classupaddpower":5,
+            "leveluppower":10,
+            "levelupspeed":0,
+            "levelupaddpower":25
+        },
+        {
+            "name": "still",
+            "power":100,
+            "atkspeed":1,
+            "target": "hp",
+            "classuppower":10,
+            "classupspeed":0,
+            "classupaddpower":0,
+            "leveluppower":100,
+            "levelupspeed":0,
+            "levelupaddpower":0
+        }
+    ]
+}
