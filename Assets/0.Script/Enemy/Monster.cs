@@ -6,6 +6,7 @@ using DG.Tweening;
 public class Monster : MonoBehaviour
 {
     SpriteRenderer sr;
+    protected DataJson.MonsterDetailData data;
 
     // Start is called before the first frame update
     void Start()

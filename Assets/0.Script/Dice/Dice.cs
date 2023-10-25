@@ -12,15 +12,19 @@ public class Dice : Singleton<Dice>
     [SerializeField] private Transform fireTrans;
     [SerializeField] private DiceBullet diceBullet;
     [SerializeField] private List<GameObject> MonsterList = new List<GameObject>();
+    protected DataJson.DiceDetailData data;
 
     public float attackRange = 10f;
-    private Transform enemytarget;
-    public Transform etarget;
+    private GameObject enemytarget;
+    //public Transform etarget;
     Dice target;
     float fireTimer;
     float fireDelayTimer = 0.2f;
 
 
+    public virtual void Init()
+    {
+    }
     public void OnMouseDown()
     {
         startPos = transform.position;
@@ -68,23 +72,19 @@ public class Dice : Singleton<Dice>
         //Attack();
         FindTarget();
         if(enemytarget != null)
-        {
-            float disToTarget =Vector3.Distance(transform.position, enemytarget.transform.position);
-            if(disToTarget <= attackRange)
-            {
-                Attack();
-                //FindTarget();
-            }
+        { 
+            Attack();
+          //FindTarget()
         }
     }
     public void FindTarget()
     {
         GameObject[] enemies = GameObject.FindGameObjectsWithTag("Monster");
-        float closetDis = float.MaxValue;
-        Transform closetEnemy = null;
+        //float closetDis = float.MaxValue;
+        //Transform closetEnemy = null;
         foreach(var enemy in enemies)
         {
-            float dis = Vector2.Distance(transform.position, enemy.transform.position);
+            /*float dis = Vector2.Distance(transform.position, enemy.transform.position);
             if( dis <= closetDis)
             {
                 closetDis = dis;
@@ -95,7 +95,8 @@ public class Dice : Singleton<Dice>
                 enemytarget = closetEnemy.transform;
                 //enemytarget = target;
                 //fireTrans.LookAt(closetEnemy.transform.position);
-            }
+            }*/
+            enemytarget = enemy;
         }
 
 

@@ -5,7 +5,7 @@ using UnityEngine;
 public class DiceBullet : MonoBehaviour
 {
     float speed = 10f;
-    private Transform target;
+    private GameObject target;
     Vector3 vec;
     Dice dice;
     // Start is called before the first frame update
@@ -20,10 +20,10 @@ public class DiceBullet : MonoBehaviour
     void Update()
     {
         //dice.FindTarget();
-        //transform.position = Vector3.MoveTowards(transform.position, target.transform.position * Time.deltaTime * speed, 0.1f);
-        transform.Translate(Vector3.up * Time.deltaTime * speed);
+        transform.position = Vector3.MoveTowards(transform.position, target.transform.position * Time.deltaTime * speed, 0.1f);
+        //transform.Translate(Vector3.up * Time.deltaTime * speed);
     }
-    public void SetTarget(Transform target)
+    public void SetTarget(GameObject target)
     {
         this.target = target;
         vec = target.transform.position;

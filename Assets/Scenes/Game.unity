@@ -369,7 +369,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e212c94af5f534a48a692d71bd43473b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dice: {fileID: 1940609692845280547, guid: 91fac1f735c2d27468893353cb02b813, type: 3}
+  dice:
+  - {fileID: -8237216532290197914, guid: 91fac1f735c2d27468893353cb02b813, type: 3}
+  - {fileID: 8358522243854631029, guid: 658c343013cc99f46af81a9426bf7e44, type: 3}
+  - {fileID: 9124018901287051297, guid: 16ff637da59a14146898c8468a1adcb8, type: 3}
   blocks:
   - {fileID: 1571231412}
   - {fileID: 398902525}
@@ -415,7 +418,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a57b34840277344cb367fa868daee0a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  monster: {fileID: 390285301118156578, guid: fb32ae3035488404390e44e0226f8e09, type: 3}
+  monster:
+  - {fileID: 3819369728417649721, guid: 69590d27b279f4b4881c7b2bfc63e680, type: 3}
+  - {fileID: 1968581468627527262, guid: 6d8c0bd10e5022c4e8c6c5cef8360d94, type: 3}
+  - {fileID: 504713361001226272, guid: 8edb3938649a18541b7f5076f926a0da, type: 3}
+  - {fileID: 3752388251170965895, guid: 730e02c878999094dba3de43bdef960c, type: 3}
+  - {fileID: 7398644750077373782, guid: c8461fd011e815e4da6363f49d52bfab, type: 3}
   spawnPos: {fileID: 164227963}
   wayPoints:
   - {fileID: 1913134160}
@@ -435,7 +443,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &248863722
 GameObject:
@@ -531,7 +539,7 @@ RectTransform:
   m_Children:
   - {fileID: 66862166}
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -818,7 +826,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &378479151
 GameObject:
@@ -864,7 +872,7 @@ Transform:
   - {fileID: 388024426}
   - {fileID: 1473683948}
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &388024425
 GameObject:
@@ -1661,7 +1669,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1207024456
 GameObject:
@@ -1844,7 +1852,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1471861720
 GameObject:
@@ -1928,7 +1936,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1473683947
 GameObject:
@@ -2245,7 +2253,7 @@ Transform:
   - {fileID: 1653800037}
   - {fileID: 1775711784}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1621523337
 GameObject:
@@ -2727,6 +2735,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   diceDataTxt: {fileID: 4900000, guid: 634d7aaef93d91449bc8b25b389e24fe, type: 3}
+  monsterDataTxt: {fileID: 4900000, guid: 3cdf0cb5e8700894e907a17d5bedce63, type: 3}
+  stageDataTxt: {fileID: 4900000, guid: a5f88802fa4db43448cf096d3fc7a440, type: 3}
+  diceJsonData:
+    DiceData: []
+  monsterJsonData:
+    MonsterData: []
+  stageJsonData:
+    StageData: []
 --- !u!4 &1896668363
 Transform:
   m_ObjectHideFlags: 0
@@ -2925,60 +2941,3 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dice: {fileID: 0}
   isDice: 0
---- !u!1001 &7948270102517066110
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 2102025908887595393, guid: 91fac1f735c2d27468893353cb02b813, type: 3}
-      propertyPath: m_Name
-      value: Dice
-      objectReference: {fileID: 0}
-    - target: {fileID: 2198129533474325552, guid: 91fac1f735c2d27468893353cb02b813, type: 3}
-      propertyPath: m_RootOrder
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2198129533474325552, guid: 91fac1f735c2d27468893353cb02b813, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -2.511261
-      objectReference: {fileID: 0}
-    - target: {fileID: 2198129533474325552, guid: 91fac1f735c2d27468893353cb02b813, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -2.5276709
-      objectReference: {fileID: 0}
-    - target: {fileID: 2198129533474325552, guid: 91fac1f735c2d27468893353cb02b813, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2198129533474325552, guid: 91fac1f735c2d27468893353cb02b813, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2198129533474325552, guid: 91fac1f735c2d27468893353cb02b813, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2198129533474325552, guid: 91fac1f735c2d27468893353cb02b813, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2198129533474325552, guid: 91fac1f735c2d27468893353cb02b813, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2198129533474325552, guid: 91fac1f735c2d27468893353cb02b813, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2198129533474325552, guid: 91fac1f735c2d27468893353cb02b813, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2198129533474325552, guid: 91fac1f735c2d27468893353cb02b813, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 91fac1f735c2d27468893353cb02b813, type: 3}

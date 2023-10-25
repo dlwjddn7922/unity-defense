@@ -1,0 +1,29 @@
+{
+    "MonsterData": [
+        {
+          "name": "namalMon",
+          "hp": 100,
+          "speed": 0.5
+        },
+      {
+        "name": "speedMon0",
+        "hp": 50,
+        "speed": 0.75
+      },
+      {
+        "name": "speedMon1",
+        "hp": 60,
+        "speed": 1
+      },
+      {
+        "name": "bigMon0",
+        "hp": 500,
+        "speed": 0.1
+      },
+      {
+        "name": "bigMon1",
+        "hp": 600,
+        "speed": 0.15
+      }
+    ]
+}
