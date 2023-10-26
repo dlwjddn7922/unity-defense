@@ -11,15 +11,12 @@ public class Dice : Singleton<Dice>
     [HideInInspector] public DiceBlock diceBlock;
     [SerializeField] private Transform fireTrans;
     [SerializeField] private DiceBullet diceBullet;
-    [SerializeField] private List<GameObject> MonsterList = new List<GameObject>();
     protected DataJson.DiceDetailData data;
-
     public float attackRange = 10f;
-    private GameObject enemytarget;
-    //public Transform etarget;
     Dice target;
     float fireTimer;
     float fireDelayTimer = 0.2f;
+    int levelUpCnt = 0;
 
 
     public virtual void Init()
@@ -32,92 +29,74 @@ public class Dice : Singleton<Dice>
     }
     public void OnMouseUp()
     {
-        if (target)
+        if (target != null)
         {
+            Debug.Log(gameObject.name);
             transform.position = target.transform.position;
             target.transform.position = startPos;
-
+/*            if (target.data.name == this.data.name)
+            {
+                Destroy(target.gameObject);
+            }*/
         }
         else
         {
             transform.position = startPos;
-
         }
         target = null;
-
     }
-    void OnMouseDrag()
-    {
-        Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
-        transform.Translate(mousePos);
-    }
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        target = collision.GetComponent<Dice>();
-    }
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        target = null;
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        diceBlock = GetComponent<DiceBlock>();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        //Attack();
-        FindTarget();
-        if(enemytarget != null)
-        { 
-            Attack();
-          //FindTarget()
-        }
-    }
-    public void FindTarget()
-    {
-        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Monster");
-        //float closetDis = float.MaxValue;
-        //Transform closetEnemy = null;
-        foreach(var enemy in enemies)
+        void OnMouseDrag()
         {
-            /*float dis = Vector2.Distance(transform.position, enemy.transform.position);
-            if( dis <= closetDis)
+            Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
+            transform.Translate(mousePos);
+        }
+        private void OnTriggerEnter2D(Collider2D collision)
+        {
+            if (collision.CompareTag("Player"))
             {
-                closetDis = dis;
-                closetEnemy = enemy.transform;
+                target = collision.GetComponent<Dice>();
+                Debug.Log(target.name);
             }
-            if (closetEnemy != null)
-            {
-                enemytarget = closetEnemy.transform;
-                //enemytarget = target;
-                //fireTrans.LookAt(closetEnemy.transform.position);
-            }*/
-            enemytarget = enemy;
+
         }
-
-
-    }
-    public void Attack()
-    {
-        fireTimer += Time.deltaTime;
-        if (fireTimer > fireDelayTimer)
+        private void OnTriggerExit2D(Collider2D collision)
         {
-            fireTimer = 0;
-            Vector2 vec = fireTrans.transform.position - enemytarget.transform.position;
-            float angle = Mathf.Atan2(vec.x, vec.y) * Mathf.Rad2Deg;
-            fireTrans.rotation = Quaternion.AngleAxis(angle - 270, Vector3.forward);
+            target = null;
+        }
 
-            DiceBullet db = Instantiate(diceBullet, fireTrans);
-            //db.transform.rotation = Quaternion.identity;
-            db.SetTarget(enemytarget);
-            //db.transform.localPosition = Vector3.zero;
-            //db.transform.localRotation = Quaternion.identity;           
+        // Start is called before the first frame update
+        void Start()
+        {
+            diceBlock = GetComponent<DiceBlock>();
+        }
+
+        // Update is called once per frame
+        void Update()
+        {
+            Attack();
+        }
+
+        public void Attack()
+        {
+            fireTimer += Time.deltaTime;
+
+            if (SpawnController.Instance.spawnPos.childCount == 0)
+                return;
+
+            if (fireTimer > fireDelayTimer)
+            {
+                fireTimer = 0;
+                Vector2 vec = fireTrans.transform.position - SpawnController.Instance.spawnPos.GetChild(0).transform.position;
+                float angle = Mathf.Atan2(vec.x, vec.y) * Mathf.Rad2Deg;
+                fireTrans.rotation = Quaternion.AngleAxis(angle - 270, Vector3.forward);
+
+                DiceBullet db = Instantiate(diceBullet, fireTrans);
+                //db.transform
+                db.SetTarget(SpawnController.Instance.spawnPos.GetChild(0).transform);
+                db.Power = data.power;
+            }
         }
     }
+  
 
-}
 

@@ -8,5 +8,6 @@ public class Monster4 : Monster
     void Start()
     {
         data = DataJson.Instance.monsterJsonData.MonsterData[4];
+        Init();
     }
 }

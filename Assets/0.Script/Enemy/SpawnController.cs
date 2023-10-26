@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
-public class SpawnController : MonoBehaviour
+public class SpawnController : Singleton<SpawnController>
 {
     float timer;
     float spawnTimer = 2f;
@@ -11,7 +11,7 @@ public class SpawnController : MonoBehaviour
     int maxSpawnCnt = 20;
     int spawnCnt;
     [SerializeField] private Monster[] monster;
-    [SerializeField] private Transform spawnPos;
+    [SerializeField] public Transform spawnPos;
     [SerializeField] Transform[] wayPoints;
     // Start is called before the first frame update
     void Start()

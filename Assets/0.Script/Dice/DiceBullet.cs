@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class DiceBullet : MonoBehaviour
 {
+    public int Power { get; set; }
     float speed = 10f;
-    private GameObject target;
+    private Transform target;
     Vector3 vec;
     Dice dice;
     // Start is called before the first frame update
@@ -20,13 +21,26 @@ public class DiceBullet : MonoBehaviour
     void Update()
     {
         //dice.FindTarget();
-        transform.position = Vector3.MoveTowards(transform.position, target.transform.position * Time.deltaTime * speed, 0.1f);
+        if (target == null)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        transform.position += (target.position - transform.position).normalized * Time.deltaTime * speed;
         //transform.Translate(Vector3.up * Time.deltaTime * speed);
     }
-    public void SetTarget(GameObject target)
+    public void SetTarget(Transform target)
     {
         this.target = target;
-        vec = target.transform.position;
+        //vec = target.transform.position;
+    }
+    public void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.CompareTag("Monster"))
+        {
+            Destroy(gameObject);
+            collision.GetComponent<Monster>().Hit(Power);
+        }
     }
 
 
