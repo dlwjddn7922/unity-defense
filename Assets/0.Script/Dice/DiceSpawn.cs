@@ -2,10 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DiceSpawn : MonoBehaviour
+public class DiceSpawn : Singleton<DiceSpawn>
 {
-    [SerializeField] private Dice[] dice;
-    [SerializeField] private DiceBlock[] blocks;
+    [SerializeField] public Dice[] dice;
+    [SerializeField] public DiceBlock[] blocks;
+    [SerializeField] public Transform[] blockTrans;
 
     int spawnCnt = 0;
     // Start is called before the first frame update
@@ -24,7 +25,9 @@ public class DiceSpawn : MonoBehaviour
                 Vector3 createPos = blocks[rand].transform.position;
                 if (blocks[rand].isDice == false)
                 {
-                    blocks[rand].dice = Instantiate(dice[diceRand], createPos, Quaternion.identity);
+                    Dice d = Instantiate(dice[diceRand], createPos, Quaternion.identity);
+                    d.transform.SetParent(blocks[rand].transform);
+                    //blocks[rand].dice = Instantiate(dice[diceRand], createPos, Quaternion.identity);                   
                     blocks[rand].isDice = true;
                     //blocks[rand].dice = blocks[i].dice;
                     spawnCnt++;
