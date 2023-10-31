@@ -31,20 +31,16 @@ public class Dice : Singleton<Dice>
     {
         if (diceBlock != null)
         {
-            /*transform.position = target.transform.position;
-            target.transform.position = startPos;*/
-            //transform.position = DiceSpawn.Instance.blocks.get
-            //if (target.data.name == this.data.name)
-            //{
-            //    Destroy(target.gameObject);
-            //}
-
+            if(diceBlock.dice == null)
+            {
+                transform.position = diceBlock.transform.position;
+            }
         }
         else
         {
             transform.position = startPos;
         }
-        target = null;
+        diceBlock = null;
     }
     void OnMouseDrag()
      {
@@ -53,26 +49,30 @@ public class Dice : Singleton<Dice>
      }
      private void OnTriggerEnter2D(Collider2D collision)
      {
-        if (collision.GetComponent<Dice>())
-        {
-            target = collision.GetComponent<Dice>();
-            Debug.Log(target.transform.position);
-        }
-        if(collision.GetComponent<DiceBlock>())
+        /*        if (collision.GetComponent<Dice>())
+                {
+                    target = collision.gameObject.GetComponent<Dice>();
+                    Destroy(target.gameObject);
+                    //Debug.Log(this.data.name);
+                    //Debug.Log(target.data.name);
+                }*/
+        if (collision.GetComponent<DiceBlock>())
         {
             diceBlock = collision.GetComponent<DiceBlock>();
+
         }
     }
      private void OnTriggerExit2D(Collider2D collision)
      {
-        target = null;
+        //target = null;
         diceBlock = null;
      }
 
         // Start is called before the first frame update
      void Start()
      {
-            //diceBlock = GetComponent<DiceBlock>();
+        //target = GetComponent<Dice>();
+        diceBlock = GetComponent<DiceBlock>();
      }
 
         // Update is called once per frame

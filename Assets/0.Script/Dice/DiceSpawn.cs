@@ -25,9 +25,9 @@ public class DiceSpawn : Singleton<DiceSpawn>
                 Vector3 createPos = blocks[rand].transform.position;
                 if (blocks[rand].isDice == false)
                 {
-                    Dice d = Instantiate(dice[diceRand], createPos, Quaternion.identity);
-                    d.transform.SetParent(blocks[rand].transform);
-                    //blocks[rand].dice = Instantiate(dice[diceRand], createPos, Quaternion.identity);                   
+                    //Dice d = Instantiate(dice[diceRand], createPos, Quaternion.identity);
+                    //d.transform.SetParent(blockTrans[rand].transform);  
+                    blocks[rand].dice = Instantiate(dice[diceRand], createPos, Quaternion.identity);                   
                     blocks[rand].isDice = true;
                     //blocks[rand].dice = blocks[i].dice;
                     spawnCnt++;

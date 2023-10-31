@@ -1981,7 +1981,6 @@ GameObject:
   m_Component:
   - component: {fileID: 9124018901287051298}
   - component: {fileID: 5877206307742400700}
-  - component: {fileID: 9124018901287051297}
   - component: {fileID: 9124018901287051296}
   - component: {fileID: 9124018901287051311}
   - component: {fileID: 9124018901287051310}
@@ -2030,23 +2029,6 @@ MonoBehaviour:
   fireTrans: {fileID: 1007263769564547580}
   diceBullet: {fileID: -8268527861640049499, guid: c675714f37fadf14b9beafbae325a813, type: 3}
   attackRange: 10
---- !u!114 &9124018901287051297
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9124018901287051309}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 29c1635401fcea740a373f53d58437a1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  startPos: {x: 0, y: 0, z: 0}
-  diceBlock: {fileID: 0}
-  fireTrans: {fileID: 0}
-  diceBullet: {fileID: -8268527861640049499, guid: c675714f37fadf14b9beafbae325a813, type: 3}
-  attackRange: 5
 --- !u!212 &9124018901287051296
 SpriteRenderer:
   m_ObjectHideFlags: 0
