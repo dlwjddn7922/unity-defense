@@ -42,7 +42,7 @@
         {
             "name": "poison",
             "power":20,
-            "atkspeed":1.3,
+            "atkspeed":0.55,
             "target": "random",
             "addpower": 50,
             "classuppower":2,

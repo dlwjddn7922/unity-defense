@@ -5,22 +5,59 @@ using Unity.Burst.CompilerServices;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class Dice : Singleton<Dice>
+public abstract class Dice : Singleton<Dice>
 {
     [HideInInspector] public Vector3 startPos = Vector3.zero;
     [HideInInspector] public DiceBlock diceBlock;
     [SerializeField] private Transform fireTrans;
     [SerializeField] private DiceBullet diceBullet;
     protected DataJson.DiceDetailData data;
+    List<DataJson.DiceDetailData> diceData;
     public float attackRange = 10f;
     Dice target;
     float fireTimer;
-    float fireDelayTimer = 0.2f;
+    float atkSpeed;
     int levelUpCnt = 0;
+    int dicePower;
 
-
+    public enum DiceName
+    {
+        electronic,
+        fire,
+        wind,
+        poision,
+        still
+    }
+    DiceName _diceName;
+    public DiceName diceName
+    {
+        get
+        {
+            _diceName = GetName();
+            return _diceName;
+        }
+        set
+        { _diceName = value; }
+    }
+    public abstract DiceName GetName();
     public virtual void Init()
     {
+        GetName();
+
+        diceData = DataJson.Instance.diceJsonData.DiceData;
+
+        for (int i = 0; i < DataJson.Instance.diceJsonData.DiceData.Count; i++)
+        {
+            if (diceData[i].name == diceName.ToString())
+            {
+                dicePower = diceData[i].power + diceData[i].addpower;
+                atkSpeed = diceData[i].atkspeed;
+
+                break;
+            }
+        }
+
+        //fireNum = 0;
     }
     public void OnMouseDown()
     {
@@ -78,7 +115,7 @@ public class Dice : Singleton<Dice>
         // Update is called once per frame
      void Update()
      {
-         //Attack();
+         Attack();
      }
 
      public void Attack()
@@ -88,7 +125,7 @@ public class Dice : Singleton<Dice>
          if (SpawnController.Instance.spawnPos.childCount == 0)
              return;
 
-         if (fireTimer > fireDelayTimer)
+         if (fireTimer > atkSpeed)
          {
              fireTimer = 0;
              Vector2 vec = fireTrans.transform.position - SpawnController.Instance.spawnPos.GetChild(0).transform.position;
@@ -98,7 +135,7 @@ public class Dice : Singleton<Dice>
              DiceBullet db = Instantiate(diceBullet, fireTrans);
              //db.transform
              db.SetTarget(SpawnController.Instance.spawnPos.GetChild(0).transform);
-             db.Power = data.power;
+             db.Power = dicePower;
          }
      }
 }

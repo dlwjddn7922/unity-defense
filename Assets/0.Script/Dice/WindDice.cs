@@ -4,10 +4,15 @@ using UnityEngine;
 
 public class WindDice : Dice
 {
+    public override DiceName GetName()
+    {
+        return DiceName.wind;
+    }
+
     // Start is called before the first frame update
     void Start()
     {
-        //Init(2);
+        Init();
         data = DataJson.Instance.diceJsonData.DiceData[2];
     }
 }
